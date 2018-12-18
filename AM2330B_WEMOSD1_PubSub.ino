@@ -13,8 +13,8 @@ AM2320 th;
 
 
 // Timers auxiliary variables
-long Tnow = millis();
-long lastMeasure = 0;
+unsigned long Tnow = millis();
+unsigned long lastMeasure = 0;
 
 
 // Change the credentials below, so your ESP8266 connects to your router
@@ -32,7 +32,7 @@ char msg[50];
 int value = 0;
 
 //Variables
-int chk;
+
 float hum;  //Stores humidity value
 float temp; //Stores temperature value
 
@@ -55,14 +55,14 @@ void setup_wifi() {
 
 
 // This functions is executed when some device publishes a message to a topic that your ESP8266 is subscribed to
-// Change the function below to add logic to your program, so when a device publishes a message to a topic that 
+// Change the function below to add logic to your program, so when a device publishes a message to a topic that
 // your ESP8266 is subscribed you can actually do something
 void callback(String topic, byte* message, unsigned int length) {
   Serial.print("Message arrived on topic: ");
   Serial.print(topic);
   Serial.print(". Message: ");
   String messageTemp;
-  
+
   for (int i = 0; i < length; i++) {
     Serial.print((char)message[i]);
     messageTemp += (char)message[i];
@@ -75,29 +75,29 @@ void callback(String topic, byte* message, unsigned int length) {
   if(topic=="home/office/esp1/desk"){
       Serial.print("Changing Desk light to ");
       if(messageTemp == "1"){
-        
+
         Serial.print("On");
       }
       else if(messageTemp == "0"){
-      
+
         Serial.print("Off");
       }
   }
   if(topic=="home/office/esp1/workbench"){
       Serial.print("Changing Workbench light to ");
       if(messageTemp == "1"){
-      
+
         Serial.print("On");
       }
       else if(messageTemp == "0"){
-      
+
         Serial.print("Off");
       }
   }
   Serial.println();
 }
 // This functions reconnects your ESP8266 to your MQTT broker
-// Change the function below if you want to subscribe to more topics with your ESP8266 
+// Change the function below if you want to subscribe to more topics with your ESP8266
 void reconnect() {
   // Loop until we're reconnected
   while (!client.connected()) {
@@ -115,7 +115,7 @@ void reconnect() {
       That should solve your MQTT multiple connections problem
     */
     if (client.connect("ESP8266Client")) {
-      Serial.println("connected");  
+      Serial.println("connected");
       // Subscribe or resubscribe to a topic
       // You can subscribe to more topics (to control more LEDs in this example)
       client.subscribe("home/office/esp1/desk");
@@ -132,7 +132,7 @@ void reconnect() {
 
 void setup()
 {
-  Serial.begin(115200);
+  Serial.begin(9600);
 
   setup_wifi();
   Wire.begin();    //For AM2320B sensor
@@ -142,20 +142,19 @@ void setup()
 
 void loop()
 {
-    
+
  if (!client.connected()) {
     reconnect();
   }
   if(!client.loop())
-    client.connect("ESP8266Client");   
+    client.connect("ESP8266Client");
     delay(2000);
    getTemp();
-  Tnow = millis();  
-    if (Tnow - lastMeasure > 30000) {
+  Tnow = millis();
+    if (Tnow - lastMeasure > 20000) {
     lastMeasure = Tnow;
     Serial.println("publish");
     pubTemp();
-   // delay(10000); //Delay 2 sec.
+    delay(500); //Delay 2 sec.
 }
 }
-   
