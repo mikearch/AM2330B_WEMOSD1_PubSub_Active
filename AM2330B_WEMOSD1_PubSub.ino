@@ -26,11 +26,18 @@ const char* ssid = "HUAWEI-E5776-89CD";radovica server
 const char* password = "QFYTA2E2";radovica server
 
 // Change the variable to your Raspberry Pi IP address, so it connects to your MQTT broker
-const char* mqtt_server = "192.168.0.24";
+//Ljubljana
+//const char* mqtt_server = "192.168.0.24";
+//Radovica
+const char* mqtt_server = "192.168.10.101";
 
 // Initializes the espClient. You should change the espClient name if you have multiple ESPs running in your home automation system
-WiFiClient espClient;
-PubSubClient client(espClient);
+WiFiClient espClient;  //change this for each ESP8266
+PubSubClient client(espClient);  //change variable as line above
+//Radovica Bar Outside
+//WiFiClient espBar1Client;  //change this for each ESP8266
+//PubSubClient client(espBar1Client);  //change variable as line above
+
 long lastMsg = 0;
 char msg[50];
 int value = 0;
@@ -118,7 +125,7 @@ void reconnect() {
        if (client.connect("ESP2_Garage")) {
       That should solve your MQTT multiple connections problem
     */
-    if (client.connect("ESP8266Client")) {
+    if (client.connect("ESP8266Client")) {  //change per instructions above
       Serial.println("connected");
       // Subscribe or resubscribe to a topic
       // You can subscribe to more topics (to control more LEDs in this example)
