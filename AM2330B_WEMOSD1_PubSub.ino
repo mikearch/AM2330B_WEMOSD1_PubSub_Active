@@ -18,8 +18,12 @@ unsigned long lastMeasure = 0;
 
 
 // Change the credentials below, so your ESP8266 connects to your router
-const char* ssid = "8D87DA";
-const char* password = "EVW327N036930";
+//Ljubljana
+//const char* ssid = "335C8E";
+//const char* password = "EVW32C0N00099679";
+//Radivica
+const char* ssid = "HUAWEI-E5776-89CD";radovica server
+const char* password = "QFYTA2E2";radovica server
 
 // Change the variable to your Raspberry Pi IP address, so it connects to your MQTT broker
 const char* mqtt_server = "192.168.0.24";
