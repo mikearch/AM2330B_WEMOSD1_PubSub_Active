@@ -1,5 +1,11 @@
-/* How to use the DHT-22 sensor with Arduino uno
-   Temperature and humidity sensor
+/* AM2330B Temperature and humiity sensor with WeMosD1 R2
+Red = 3v3 or use 5v with logic level shifter
+Black = gnd
+White = SCL (D1)
+Yellow = SDA (D2)
+
+consider pull-down resistors on SCL and SDA
+
 */
 
 //Libraries
@@ -15,6 +21,7 @@ AM2320 th;
 // Timers auxiliary variables
 unsigned long Tnow = millis();
 unsigned long lastMeasure = 0;
+usigned long publishInterval = 120000; //node red publish every 2 mins
 
 
 // Change the credentials below, so your ESP8266 connects to your router
@@ -162,7 +169,7 @@ void loop()
     delay(2000);
    getTemp();
   Tnow = millis();
-    if (Tnow - lastMeasure > 20000) {
+    if (Tnow - lastMeasure > publishInterval) {
     lastMeasure = Tnow;
     Serial.println("publish");
     pubTemp();
