@@ -25,18 +25,29 @@ usigned long publishInterval = 120000; //node red publish every 2 mins
 
 
 // Change the credentials below, so your ESP8266 connects to your router
+
 //Ljubljana
 //const char* ssid = "335C8E";
 //const char* password = "EVW32C0N00099679";
-//Radivica
-const char* ssid = "HUAWEI-E5776-89CD";radovica server
-const char* password = "QFYTA2E2";radovica server
+
+//Radovica
+const char* ssid = "DWR-921-2BF8"; //radovica server
+const char* password = "CY3qR8KT"; //radovica server
+
+//Radovica D-link
+//const char* ssid = "HUAWEI-E5776-89CD"; //radovica server
+//const char* password = "QFYTA2E2"; //radovica server
 
 // Change the variable to your Raspberry Pi IP address, so it connects to your MQTT broker
+
 //Ljubljana
 //const char* mqtt_server = "192.168.0.24";
-//Radovica
-const char* mqtt_server = "192.168.10.101";
+
+//Radovica-mobil wifi small
+//const char* mqtt_server = "192.168.0.101";
+
+//Radovica-mobil wifi small D-link router
+const char* mqtt_server = "192.168.0.50";
 
 // Initializes the espClient. You should change the espClient name if you have multiple ESPs running in your home automation system
 WiFiClient espClient;  //change this for each ESP8266
