@@ -21,7 +21,7 @@ AM2320 th;
 // Timers auxiliary variables
 unsigned long Tnow = millis();
 unsigned long lastMeasure = 0;
-usigned long publishInterval = 120000; //node red publish every 2 mins
+unsigned long publishInterval = 120000; //node red publish every 2 mins
 
 
 // Change the credentials below, so your ESP8266 connects to your router

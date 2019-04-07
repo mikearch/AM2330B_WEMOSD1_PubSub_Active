@@ -21,8 +21,9 @@ void pubTemp() {
 
     // Publishes Temperature and Humidity values
     // esp1 = living room
-    // esp2 = bar
-    
+    // esp2 = Outside
+    // esp3 = Bar
+
     client.publish("home/office/esp2/temperature", temperatureTemp);
     Serial.print ("Published Temp = ");
     Serial.println (temperatureTemp);
